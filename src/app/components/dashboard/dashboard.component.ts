@@ -1,24 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PokeapiService } from 'src/app/services/pokeapi.service';
-
-interface PokemonDto {
-    name: string;
-    url: string;
-}
-
-interface PokeApiDto {
-    count: number;
-    next: string;
-    previous: string;
-    results: PokemonDto[];
-}
-
-interface Pokemon {
-    name: string;
-    id: number;
-}
-
-const getIdFromUrl = (url: string): number => +url.split('/').slice(-2)[0];
+import PokeapiDto from 'src/app/data-models/pokeapi-dto';
+import PokemonLabel from 'src/app/data-models/pokemon-label';
+import { getIdFromUrl } from 'src/app/utils/utils';
 
 @Component({
     selector: 'dashboard',
@@ -27,12 +11,12 @@ const getIdFromUrl = (url: string): number => +url.split('/').slice(-2)[0];
 })
 export class DashboardComponent implements OnInit {
     public title = 'Cosmopoke';
-    public pokemons: Pokemon[] = [];
+    public pokemons: PokemonLabel[] = [];
 
     constructor(private api: PokeapiService) { }
 
     ngOnInit() {
-        this.api.getPokemons(0, 10).subscribe((res: PokeApiDto) => {
+        this.api.getPokemons(30, 10).subscribe((res: PokeapiDto) => {
             this.pokemons = res.results.map(item => ({
                 name: item.name,
                 id: getIdFromUrl(item.url)
