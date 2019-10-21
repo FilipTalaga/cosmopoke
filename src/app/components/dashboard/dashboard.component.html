@@ -1,2 +1,9 @@
 <h1>{{title}}</h1>
 <p>Catch'em all!</p>
+<ul>
+    <li *ngFor="let item of pokemons">
+        <a [routerLink]="[ '/pokemon', item.id ]">
+            {{item.name}}
+        </a>
+    </li>
+</ul>
