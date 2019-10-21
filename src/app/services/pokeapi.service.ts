@@ -8,7 +8,7 @@ import PokeapiDto from '../data-models/pokeapi-dto';
     providedIn: 'root'
 })
 export class PokeapiService {
-    private baseUrl = 'https://pokeapi.co/api/v2/pokemon';
+    public baseUrl = 'https://pokeapi.co/api/v2/pokemon';
 
     constructor(private http: HttpClient) { }
 

@@ -1,11 +1,9 @@
 export interface StatDetailsDto {
     name: string;
-    url: string;
 }
 
 export interface StatDto {
     base_stat: number;
-    effort: number;
     stat: StatDetailsDto;
 }
 
