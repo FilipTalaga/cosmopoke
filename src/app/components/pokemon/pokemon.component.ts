@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { PokeapiService } from 'src/app/services/pokeapi.service';
 
 interface Pokemon {
     name: string;
@@ -16,11 +16,11 @@ interface Pokemon {
 export class PokemonComponent implements OnInit {
     public pokemon: Pokemon;
 
-    constructor(private activatedRoute: ActivatedRoute, private http: HttpClient) { }
+    constructor(private activatedRoute: ActivatedRoute, private api: PokeapiService) { }
 
     ngOnInit() {
         this.activatedRoute.params.subscribe(params => {
-            this.http.get(`https://pokeapi.co/api/v2/pokemon/${params.id}`).subscribe((res: Pokemon) => {
+            this.api.getPokemon(params.id).subscribe((res: Pokemon) => {
                 this.pokemon = res;
                 console.log(res);
             });

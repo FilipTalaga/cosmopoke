@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { PokeapiService } from 'src/app/services/pokeapi.service';
 
 interface PokemonDto {
     name: string;
@@ -18,7 +18,7 @@ interface Pokemon {
     id: number;
 }
 
-const getIdFromUrl = (url: string): number => +url.slice(-2)[0];
+const getIdFromUrl = (url: string): number => +url.split('/').slice(-2)[0];
 
 @Component({
     selector: 'dashboard',
@@ -29,10 +29,10 @@ export class DashboardComponent implements OnInit {
     public title = 'Cosmopoke';
     public pokemons: Pokemon[] = [];
 
-    constructor(private http: HttpClient) { }
+    constructor(private api: PokeapiService) { }
 
     ngOnInit() {
-        this.http.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=10').subscribe((res: PokeApiDto) => {
+        this.api.getPokemons(0, 10).subscribe((res: PokeApiDto) => {
             this.pokemons = res.results.map(item => ({
                 name: item.name,
                 id: getIdFromUrl(item.url)
