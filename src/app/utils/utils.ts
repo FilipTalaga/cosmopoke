@@ -1,2 +1,2 @@
 export const getIdFromUrl = (url: string): number =>
-    +url.split('/').slice(-2)[0];
+    +url.split('/').filter(c => c !== '').slice(-1)[0];
