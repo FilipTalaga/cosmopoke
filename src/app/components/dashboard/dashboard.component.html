@@ -13,10 +13,10 @@
     </a>
 </ul>
 <div class="actions">
-    <button>
+    <button (click)="handleLeft()" [disabled]="!hasPrevious">
         <i class="material-icons">chevron_left</i>
     </button>
-    <button>
+    <button (click)="handleRight()" [disabled]="!hasNext">
         <i class="material-icons">chevron_right</i>
     </button>
 </div>

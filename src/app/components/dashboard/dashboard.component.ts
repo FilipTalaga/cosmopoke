@@ -12,11 +12,32 @@ import { getIdFromUrl } from 'src/app/utils/utils';
 export class DashboardComponent implements OnInit {
     public title = 'Cosmopoke';
     public pokemons: PokemonLabel[] = [];
+    public hasNext = false;
+    public hasPrevious = false;
+
+    private currentOffset = 0;
+    private limit = 10;
 
     constructor(private api: PokeapiService) { }
 
     ngOnInit() {
-        this.api.getPokemons(30, 10).subscribe((res: PokeapiDto) => {
+        this.getPokemons();
+    }
+
+    handleLeft() {
+        this.currentOffset -= this.limit;
+        this.getPokemons();
+    }
+
+    handleRight() {
+        this.currentOffset += this.limit;
+        this.getPokemons();
+    }
+
+    getPokemons() {
+        this.api.getPokemons(this.currentOffset, this.limit).subscribe((res: PokeapiDto) => {
+            this.hasNext = !!res.next;
+            this.hasPrevious = !!res.previous;
             this.pokemons = res.results.map(item => ({
                 name: item.name,
                 id: getIdFromUrl(item.url)
