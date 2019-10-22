@@ -6,13 +6,15 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PokemonComponent } from './components/pokemon/pokemon.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { BackgroundComponent } from './components/background/background.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         DashboardComponent,
         PokemonComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        BackgroundComponent
     ],
     imports: [
         BrowserModule,

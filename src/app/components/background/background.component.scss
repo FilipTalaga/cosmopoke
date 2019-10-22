@@ -1,0 +1,31 @@
+svg {
+    position: absolute;
+    left: 0;
+    z-index: -1;
+}
+
+.top-svg {
+    top: 0;
+    filter: drop-shadow(rgba(255, 0, 239, 0.4) 0px 0px 30px);
+
+    & > .back {
+        fill: rgba(255, 0, 239, 0.1);
+    }
+
+    & > .front {
+        fill: #ff00ef;
+    }
+}
+
+.bot-svg {
+    bottom: 0;
+    filter: drop-shadow(rgba(6, 0, 255, 0.4) 0px 0px 30px);
+
+    & > .back {
+        fill: rgba(6, 0, 255, 0.1);
+    }
+
+    & > .front {
+        fill: #0600ff;
+    }
+}
