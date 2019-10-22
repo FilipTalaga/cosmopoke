@@ -4,6 +4,7 @@ export interface Stat {
 }
 
 export default interface Pokemon {
+    id: number;
     name: string;
     imgUrl: string;
     stats: Stat[];

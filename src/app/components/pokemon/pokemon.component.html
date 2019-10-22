@@ -1,8 +1,25 @@
-<div *ngIf="pokemon">
-    <h1>{{pokemon.name | titlecase}}</h1>
-    <img [src]="pokemon.imgUrl" />
-    <div *ngFor="let stat of pokemon.stats">
-        <span>{{stat.name}}</span>
-        <span>{{stat.value}}</span>
+<div *ngIf="loaded">
+    <div class="header">
+        <div>
+            <h1>{{currentPokemon.name | titlecase}}</h1>
+            <div class="separator"></div>
+        </div>
+        <img [src]="currentPokemon.imgUrl" />
+    </div>
+    <ul class="list">
+        <li *ngFor="let stat of currentPokemon.stats">
+            <span>{{stat.name}}</span>
+            <span>{{stat.value}}</span>
+        </li>
+    </ul>
+    <div class="actions">
+        <button (click)="handlePrev()">
+            <i class="material-icons">chevron_left</i>
+            <span>#{{prevPokemon.id}} {{prevPokemon.name | titlecase}}</span>
+        </button>
+        <button (click)="handleNext()">
+            <span>#{{nextPokemon.id}} {{nextPokemon.name | titlecase}}</span>
+            <i class="material-icons">chevron_right</i>
+        </button>
     </div>
 </div>

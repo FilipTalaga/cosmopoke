@@ -1,10 +1,49 @@
+@import '../../../styles/theme.scss';
+
 :host {
+    width: 100%;
+    max-width: 500px;
     padding: 2rem;
     background: white;
     box-shadow: 0 10px 20px rgb(0, 0, 0, 0.2);
     border-radius: 1rem;
 }
 
-span {
-    margin-right: 1rem;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list {
+    padding: 0;
+    list-style: none;
+}
+
+.separator {
+    width: 40px;
+    height: 4px;
+    margin: 28px 0;
+    background: $color-active;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & > button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: .5rem 1rem;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background: transparent;
+    }
+
+    & > button:hover {
+        background: #dedede;
+    }
 }

@@ -12,6 +12,7 @@ export interface SpritesDto {
 }
 
 export default interface PokemonDto {
+    id: number;
     name: string;
     stats: StatDto[];
     sprites: SpritesDto;

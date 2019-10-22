@@ -1,6 +1,7 @@
 @import '../../../styles/theme.scss';
 
 :host {
+    width: 100%;
     max-width: 500px;
     padding: 2rem;
     background: white;
