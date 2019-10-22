@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PokemonComponent } from './pokemon.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('PokemonComponent', () => {
     let component: PokemonComponent;
@@ -7,7 +9,8 @@ describe('PokemonComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [PokemonComponent]
+            imports: [RouterTestingModule, HttpClientTestingModule],
+            declarations: [PokemonComponent],
         }).compileComponents();
     }));
 
