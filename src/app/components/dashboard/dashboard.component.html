@@ -1,9 +1,22 @@
-<h1>{{title}}</h1>
-<p>Catch'em all!</p>
-<ul>
-    <li *ngFor="let item of pokemons">
-        <a [routerLink]="[ '/pokemon', item.id ]">
-            {{item.name}}
-        </a>
-    </li>
+<h1>Choose your pokemon!</h1>
+<div class="separator"></div>
+<p class="info">
+    Pick the favorite creature and check for stats. You can also search by typing id into field below.
+</p>
+<input class="search">
+<ul class="list">
+    <a [routerLink]="[ '/pokemon', item.id ]" *ngFor="let item of pokemons">
+        <li class="list-item">
+            <span class="id">#{{item.id}}</span>
+            <span>{{item.name | titlecase}}</span>
+        </li>
+    </a>
 </ul>
+<div class="actions">
+    <button>
+        <i class="material-icons">chevron_left</i>
+    </button>
+    <button>
+        <i class="material-icons">chevron_right</i>
+    </button>
+</div>

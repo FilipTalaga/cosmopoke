@@ -1,3 +1,5 @@
+@import '../../../styles/theme.scss';
+
 svg {
     position: absolute;
     left: 0;
@@ -11,26 +13,26 @@ path {
 
 .top-svg {
     top: 60px;
-    filter: drop-shadow(rgba(255, 0, 239, 0.4) 0px 0px 30px);
+    filter: drop-shadow(rgba($color-accent, .4) 0px 0px 30px);
 
     & > .back {
-        fill: rgba(255, 0, 239, 0.1);
+        fill: rgba($color-accent, .1);
     }
 
     & > .front {
-        fill: #ff00ef;
+        fill: $color-accent;
     }
 }
 
 .bot-svg {
     bottom: 0;
-    filter: drop-shadow(rgba(6, 0, 255, 0.4) 0px 0px 30px);
+    filter: drop-shadow(rgba($color-primary, .4) 0px 0px 30px);
 
     & > .back {
-        fill: rgba(6, 0, 255, 0.1);
+        fill: rgba($color-primary, .1);
     }
 
     & > .front {
-        fill: #0600ff;
+        fill: $color-primary;
     }
 }

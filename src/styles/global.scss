@@ -1,4 +1,6 @@
 @import './fonts.scss';
+@import './theme.scss';
+@import '~material-design-icons/iconfont/material-icons.css';
 
 html, body {
     height: 100%;
@@ -6,9 +8,16 @@ html, body {
 
 body {
   margin: 0;
-  font-family: 'Rubik', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+input,
+textarea {
+    font-family: 'Rubik', sans-serif;
+    color: $color-text;
+    font-weight: 300;
 }
 
 *, *:before, *:after {
@@ -18,12 +27,21 @@ body {
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
     font-family: 'Campton-Bold', sans-serif;
+    font-weight: 500;
 }
 
 p {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
 img {
     display: block;
+    max-width: 100%;
 }
