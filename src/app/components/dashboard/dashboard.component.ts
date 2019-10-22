@@ -3,6 +3,8 @@ import { PokeapiService } from 'src/app/services/pokeapi.service';
 import PokeapiDto from 'src/app/data-models/pokeapi-dto';
 import PokemonLabel from 'src/app/data-models/pokemon-label';
 import { getIdFromUrl } from 'src/app/utils/utils';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'dashboard',
@@ -10,15 +12,31 @@ import { getIdFromUrl } from 'src/app/utils/utils';
     styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-    public title = 'Cosmopoke';
+    public searchForm: FormGroup;
     public pokemons: PokemonLabel[] = [];
     public hasNext = false;
     public hasPrevious = false;
-
     private currentOffset = 0;
-    private limit = 10;
+    public limit = 10;
+    public maxPages = 10;
 
-    constructor(private api: PokeapiService) { }
+    constructor(formBuilder: FormBuilder, private api: PokeapiService, private router: Router) {
+        this.searchForm = formBuilder.group({
+            id: formBuilder.control('', {
+                updateOn: 'change',
+                validators: [
+                    Validators.required,
+                    Validators.min(1),
+                    Validators.max(this.limit * this.maxPages),
+                    Validators.pattern('^(0|[1-9][0-9]*)$'),
+                ]
+            }),
+        });
+    }
+
+    get isFormInvalid() {
+        return !this.searchForm.pristine && this.searchForm.touched && this.searchForm.invalid;
+    }
 
     ngOnInit() {
         this.getPokemons();
@@ -34,9 +52,16 @@ export class DashboardComponent implements OnInit {
         this.getPokemons();
     }
 
+    handleSearch() {
+        if (this.searchForm.invalid) {
+            return;
+        }
+        this.router.navigate(['/pokemon', this.searchForm.value.id]);
+    }
+
     getPokemons() {
         this.api.getPokemons(this.currentOffset, this.limit).subscribe((res: PokeapiDto) => {
-            this.hasNext = !!res.next;
+            this.hasNext = !!res.next && !this.isOverMaxPages();
             this.hasPrevious = !!res.previous;
             this.pokemons = res.results.map(item => ({
                 name: item.name,
@@ -44,4 +69,6 @@ export class DashboardComponent implements OnInit {
             }));
         });
     }
+
+    isOverMaxPages = (): boolean => this.currentOffset >= this.maxPages * this.limit - this.limit;
 }

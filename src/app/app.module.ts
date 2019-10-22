@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BackgroundComponent } from './components/background/background.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     ],
     imports: [
         BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
         AppRoutingModule,
         HttpClientModule
     ],

@@ -3,14 +3,16 @@
 <p class="info">
     Pick the favorite creature and check for stats. You can also search by typing id into field below.
 </p>
-<input class="search">
+<form class="search-form" (submit)="handleSearch()" [formGroup]="searchForm">
+    <input class="search-field" placeholder="Id" type="number" formControlName="id">
+    <button class="search-button" type="submit">Search</button>
+</form>
+<p class="error" *ngIf="isFormInvalid">Type number between 1 and {{limit * maxPages}}</p>
 <ul class="list">
-    <a [routerLink]="[ '/pokemon', item.id ]" *ngFor="let item of pokemons">
-        <li class="list-item">
-            <span class="id">#{{item.id}}</span>
-            <span>{{item.name | titlecase}}</span>
-        </li>
-    </a>
+    <li class="list-item" *ngFor="let item of pokemons">
+        <span class="id">#{{item.id}}</span>
+        <span>{{item.name | titlecase}}</span>
+    </li>
 </ul>
 <div class="actions">
     <button (click)="handleLeft()" [disabled]="!hasPrevious">
