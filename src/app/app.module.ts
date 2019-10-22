@@ -7,6 +7,7 @@ import { PokemonComponent } from './components/pokemon/pokemon.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BackgroundComponent } from './components/background/background.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import { BackgroundComponent } from './components/background/background.componen
         DashboardComponent,
         PokemonComponent,
         PageNotFoundComponent,
-        BackgroundComponent
+        BackgroundComponent,
+        ToolbarComponent
     ],
     imports: [
         BrowserModule,

@@ -4,8 +4,13 @@ svg {
     z-index: -1;
 }
 
+path {
+    transition: transform 600ms;
+    transform-origin: center;
+}
+
 .top-svg {
-    top: 0;
+    top: 60px;
     filter: drop-shadow(rgba(255, 0, 239, 0.4) 0px 0px 30px);
 
     & > .back {

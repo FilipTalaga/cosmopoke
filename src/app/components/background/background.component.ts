@@ -1,4 +1,6 @@
 import { Component, OnInit, HostListener, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
     selector: 'background',
@@ -13,15 +15,46 @@ export class BackgroundComponent implements OnInit {
     @ViewChild('botBack', null) botBack: ElementRef;
     @ViewChild('botFront', null) botFront: ElementRef;
 
-    constructor(private renderer: Renderer2) { }
+    private expanded = false;
+
+    constructor(private renderer: Renderer2, private router: Router) { }
 
     ngOnInit() {
-        this.update(window.innerWidth, window.innerWidth < window.innerHeight ? window.innerHeight / 2 : window.innerHeight);
+        this.update(this.width, this.height);
+
+        this.router.events
+            .pipe(filter(event => event instanceof NavigationEnd))
+            .subscribe(() => this.animate());
     }
 
     @HostListener('window:resize')
     onResize() {
-        this.update(window.innerWidth, window.innerWidth < window.innerHeight ? window.innerHeight / 2 : window.innerHeight);
+        this.update(this.width, this.height);
+    }
+
+    private animate() {
+        this.expanded = !this.expanded;
+
+        this.setStyle(this.topBack, 'transform', this.expanded ? 'scale(1.1)' : '');
+        this.setStyle(this.topFront, 'transform', !this.expanded ? 'scale(1.1)' : '');
+        this.setStyle(this.botBack, 'transform', !this.expanded ? 'scale(1.1)' : '');
+        this.setStyle(this.botFront, 'transform', this.expanded ? 'scale(1.1)' : '');
+    }
+
+    private get height() {
+        return (window.innerWidth < window.innerHeight ? window.innerHeight / 2 : window.innerHeight) - 60;
+    }
+
+    private get width() {
+        return window.innerWidth;
+    }
+
+    private setStyle(el: ElementRef, style: string, value: string) {
+        this.renderer.setStyle(el.nativeElement, style, value);
+    }
+
+    private setAttr(el: ElementRef, attr: string, value: string) {
+        this.renderer.setAttribute(el.nativeElement, attr, value);
     }
 
     private update(width: number, height: number) {
@@ -58,9 +91,5 @@ export class BackgroundComponent implements OnInit {
             Q ${x(750)} ${y(200)} ${x(950)} ${y(300)}
             L ${x(950)} ${y(500)} Z
         `);
-    }
-
-    private setAttr(el: ElementRef, attr: string, value: string) {
-        this.renderer.setAttribute(el.nativeElement, attr, value);
     }
 }
