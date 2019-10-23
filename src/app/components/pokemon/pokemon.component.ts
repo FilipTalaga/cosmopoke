@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PokeapiService } from 'src/app/services/pokeapi.service';
-import Pokemon from 'src/app/data-models/pokemon';
+import Pokemon, { Stats } from 'src/app/data-models/pokemon';
 import PokemonDto from 'src/app/data-models/pokemon-dto';
+
 
 @Component({
     selector: 'pokemon',
@@ -13,6 +14,15 @@ export class PokemonComponent implements OnInit {
     public prevPokemon: Pokemon;
     public currentPokemon: Pokemon;
     public nextPokemon: Pokemon;
+
+    public maxStats: Stats = {
+        hp: 255,
+        attack: 190,
+        defense: 230,
+        spAttack: 190,
+        spDefense: 230,
+        speed: 180
+    };
 
     constructor(private activatedRoute: ActivatedRoute, private api: PokeapiService, private router: Router) { }
 
@@ -36,15 +46,34 @@ export class PokemonComponent implements OnInit {
         return this.prevPokemon && this.currentPokemon && this.nextPokemon;
     }
 
+    get total() {
+        return this.currentPokemon.stats.hp
+            + this.currentPokemon.stats.attack
+            + this.currentPokemon.stats.defense
+            + this.currentPokemon.stats.spAttack
+            + this.currentPokemon.stats.spDefense
+            + this.currentPokemon.stats.speed;
+    }
+
+    getStatInPercent = (stat: string) =>
+        this.currentPokemon.stats[stat] / this.maxStats[stat] * 100
+
     private dtoToPokemon = (res: PokemonDto): Pokemon => ({
         id: res.id,
         name: res.name,
         imgUrl: res.sprites.front_default,
-        stats: res.stats.map(stat => ({
-            name: stat.stat.name,
-            value: stat.base_stat,
-        })),
+        stats: {
+            hp: this.getStatByName(res, 'hp'),
+            attack: this.getStatByName(res, 'attack'),
+            defense: this.getStatByName(res, 'defense'),
+            spAttack: this.getStatByName(res, 'special-attack'),
+            spDefense: this.getStatByName(res, 'special-defense'),
+            speed: this.getStatByName(res, 'speed'),
+        }
     })
+
+    private getStatByName = (res: PokemonDto, name: string): number =>
+        res.stats.find(item => item.stat.name === name).base_stat
 
     public handlePrev() {
         this.router.navigate(['/pokemon', this.prevPokemon.id]);
