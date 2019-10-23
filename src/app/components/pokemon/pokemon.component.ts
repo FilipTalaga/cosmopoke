@@ -24,7 +24,7 @@ export class PokemonComponent implements OnInit {
         speed: 180
     };
 
-    constructor(private activatedRoute: ActivatedRoute, private api: PokeapiService, private router: Router) { }
+    constructor(private activatedRoute: ActivatedRoute, private api: PokeapiService, public router: Router) { }
 
     ngOnInit() {
         this.activatedRoute.params.subscribe(params => {
@@ -55,8 +55,8 @@ export class PokemonComponent implements OnInit {
             + this.currentPokemon.stats.speed;
     }
 
-    getStatInPercent = (stat: string) =>
-        this.currentPokemon.stats[stat] / this.maxStats[stat] * 100
+    getStatInPercent = (stat: string): string =>
+        `scaleX(${this.currentPokemon.stats[stat] / this.maxStats[stat]})`
 
     private dtoToPokemon = (res: PokemonDto): Pokemon => ({
         id: res.id,

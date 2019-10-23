@@ -1,14 +1,16 @@
 <div *ngIf="loaded">
-    <a class="back" routerLink="/">
+    <button class="icon-button" (click)="router.navigate(['/'])">
         <i class="material-icons">close</i>
-    </a>
+    </button>
     <div class="content">
         <div class="header">
             <div>
                 <h1>{{currentPokemon.name | titlecase}}</h1>
                 <div class="separator"></div>
             </div>
-            <img [src]="currentPokemon.imgUrl" />
+            <div>
+                <img [src]="currentPokemon.imgUrl" />
+            </div>
         </div>
         <div class="stats">
             <ul class="list">
@@ -21,12 +23,12 @@
                 <li class="total">Total</li>
             </ul>
             <ul class="list bars">
-                <li id="hp" [style.width.%]="getStatInPercent('hp')"></li>
-                <li id="attack" [style.width.%]="getStatInPercent('attack')"></li>
-                <li id="defense" [style.width.%]="getStatInPercent('defense')"></li>
-                <li id="spAttack" [style.width.%]="getStatInPercent('spAttack')"></li>
-                <li id="spDefense" [style.width.%]="getStatInPercent('spDefense')"></li>
-                <li id="speed" [style.width.%]="getStatInPercent('speed')"></li>
+                <li id="hp" [style.transform]="getStatInPercent('hp')"></li>
+                <li id="attack" [style.transform]="getStatInPercent('attack')"></li>
+                <li id="defense" [style.transform]="getStatInPercent('defense')"></li>
+                <li id="spAttack" [style.transform]="getStatInPercent('spAttack')"></li>
+                <li id="spDefense" [style.transform]="getStatInPercent('spDefense')"></li>
+                <li id="speed" [style.transform]="getStatInPercent('speed')"></li>
             </ul>
             <ul class="list values">
                 <li>{{currentPokemon.stats.hp}}</li>
