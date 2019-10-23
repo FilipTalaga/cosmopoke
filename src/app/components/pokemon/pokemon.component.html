@@ -1,45 +1,50 @@
 <div *ngIf="loaded">
-    <div class="header">
-        <div>
-            <h1>{{currentPokemon.name | titlecase}}</h1>
-            <div class="separator"></div>
+    <a class="back" routerLink="/">
+        <i class="material-icons">close</i>
+    </a>
+    <div class="content">
+        <div class="header">
+            <div>
+                <h1>{{currentPokemon.name | titlecase}}</h1>
+                <div class="separator"></div>
+            </div>
+            <img [src]="currentPokemon.imgUrl" />
         </div>
-        <img [src]="currentPokemon.imgUrl" />
-    </div>
-    <div class="stats">
-        <ul class="list">
-            <li>HP</li>
-            <li>Attack</li>
-            <li>Defense</li>
-            <li>Sp. Attack</li>
-            <li>Sp. Defense</li>
-            <li>Speed</li>
-            <li class="total">Total</li>
-        </ul>
-        <ul class="list bars">
-            <li id="hp" [style.width.%]="getStatInPercent('hp')"></li>
-            <li id="attack" [style.width.%]="getStatInPercent('attack')"></li>
-            <li id="defense" [style.width.%]="getStatInPercent('defense')"></li>
-            <li id="spAttack" [style.width.%]="getStatInPercent('spAttack')"></li>
-            <li id="spDefense" [style.width.%]="getStatInPercent('spDefense')"></li>
-            <li id="speed" [style.width.%]="getStatInPercent('speed')"></li>
-        </ul>
-        <ul class="list values">
-            <li>{{currentPokemon.stats.hp}}</li>
-            <li>{{currentPokemon.stats.attack}}</li>
-            <li>{{currentPokemon.stats.defense}}</li>
-            <li>{{currentPokemon.stats.spAttack}}</li>
-            <li>{{currentPokemon.stats.spDefense}}</li>
-            <li>{{currentPokemon.stats.speed}}</li>
-            <li class="total">{{total}}</li>
-        </ul>
+        <div class="stats">
+            <ul class="list">
+                <li>HP</li>
+                <li>Attack</li>
+                <li>Defense</li>
+                <li>Sp. Attack</li>
+                <li>Sp. Defense</li>
+                <li>Speed</li>
+                <li class="total">Total</li>
+            </ul>
+            <ul class="list bars">
+                <li id="hp" [style.width.%]="getStatInPercent('hp')"></li>
+                <li id="attack" [style.width.%]="getStatInPercent('attack')"></li>
+                <li id="defense" [style.width.%]="getStatInPercent('defense')"></li>
+                <li id="spAttack" [style.width.%]="getStatInPercent('spAttack')"></li>
+                <li id="spDefense" [style.width.%]="getStatInPercent('spDefense')"></li>
+                <li id="speed" [style.width.%]="getStatInPercent('speed')"></li>
+            </ul>
+            <ul class="list values">
+                <li>{{currentPokemon.stats.hp}}</li>
+                <li>{{currentPokemon.stats.attack}}</li>
+                <li>{{currentPokemon.stats.defense}}</li>
+                <li>{{currentPokemon.stats.spAttack}}</li>
+                <li>{{currentPokemon.stats.spDefense}}</li>
+                <li>{{currentPokemon.stats.speed}}</li>
+                <li class="total">{{total}}</li>
+            </ul>
+        </div>
     </div>
     <div class="actions">
-        <button (click)="handlePrev()">
+        <button (click)="handlePrev()" id="left">
             <i class="material-icons">chevron_left</i>
             <span>#{{prevPokemon.id}} {{prevPokemon.name | titlecase}}</span>
         </button>
-        <button (click)="handleNext()">
+        <button (click)="handleNext()" id="right">
             <span>#{{nextPokemon.id}} {{nextPokemon.name | titlecase}}</span>
             <i class="material-icons">chevron_right</i>
         </button>
