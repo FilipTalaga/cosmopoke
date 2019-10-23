@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PokeapiService } from 'src/app/services/pokeapi.service';
-import Pokemon, { Stats } from 'src/app/data-models/pokemon';
+import Pokemon from 'src/app/data-models/pokemon';
 import PokemonDto from 'src/app/data-models/pokemon-dto';
 
 @Component({
@@ -16,15 +16,6 @@ export class PokemonComponent implements OnInit {
     public loadingNext = false;
     public loadingPrev = false;
 
-    public maxStats: Stats = {
-        hp: 255,
-        attack: 190,
-        defense: 230,
-        spAttack: 190,
-        spDefense: 230,
-        speed: 180
-    };
-
     constructor(private activatedRoute: ActivatedRoute, private api: PokeapiService, public router: Router) { }
 
     ngOnInit() {
@@ -36,52 +27,45 @@ export class PokemonComponent implements OnInit {
                 return;
             }
 
-            this.loadingNext = true;
-            this.loadingPrev = true;
-
-            this.api.getPokemon(id).subscribe((res: PokemonDto) => {
-                this.currentPokemon = this.dtoToPokemon(res);
-            });
-
-            if (id > 1) {
-                this.api.getPokemon(id - 1).subscribe((res: PokemonDto) => {
-                    this.prevPokemon = this.dtoToPokemon(res);
-                    this.loadingNext = false;
-                });
-            } else {
-                this.prevPokemon = null;
-                this.loadingNext = false;
-            }
-
-            if (id < 100) {
-                this.api.getPokemon(id + 1).subscribe((res: PokemonDto) => {
-                    this.nextPokemon = this.dtoToPokemon(res);
-                    this.loadingPrev = false;
-                });
-            } else {
-                this.nextPokemon = null;
-                this.loadingPrev = false;
-            }
+            this.loadCurrentPokemon(id);
+            this.loadPrevPokemon(id);
+            this.loadNextPokemon(id);
         });
     }
 
-    get loaded() {
-        return this.prevPokemon && this.currentPokemon && this.nextPokemon;
+    private loadCurrentPokemon(id: number) {
+        this.api.getPokemon(id).subscribe((res: PokemonDto) => {
+            this.currentPokemon = this.mapPokemonDto(res);
+        });
     }
 
-    get total() {
-        return this.currentPokemon.stats.hp
-            + this.currentPokemon.stats.attack
-            + this.currentPokemon.stats.defense
-            + this.currentPokemon.stats.spAttack
-            + this.currentPokemon.stats.spDefense
-            + this.currentPokemon.stats.speed;
+    private loadPrevPokemon(id: number) {
+        if (id <= 1) {
+            this.prevPokemon = null;
+            return;
+        }
+
+        this.loadingPrev = true;
+        this.api.getPokemon(id - 1).subscribe((res: PokemonDto) => {
+            this.prevPokemon = this.mapPokemonDto(res);
+            this.loadingPrev = false;
+        });
     }
 
-    getStatInPercent = (stat: string): string =>
-        `scaleX(${this.currentPokemon ? this.currentPokemon.stats[stat] / this.maxStats[stat] : 0.2})`
+    private loadNextPokemon(id: number) {
+        if (id >= 100) {
+            this.nextPokemon = null;
+            return;
+        }
 
-    private dtoToPokemon = (res: PokemonDto): Pokemon => ({
+        this.loadingNext = true;
+        this.api.getPokemon(id + 1).subscribe((res: PokemonDto) => {
+            this.nextPokemon = this.mapPokemonDto(res);
+            this.loadingNext = false;
+        });
+    }
+
+    private mapPokemonDto = (res: PokemonDto): Pokemon => ({
         id: res.id,
         name: res.name,
         imgUrl: res.sprites.front_default,

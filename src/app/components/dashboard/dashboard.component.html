@@ -26,10 +26,10 @@
     </ul>
 </div>
 <div class="actions">
-    <button (click)="handleLeft()" [disabled]="!hasPrevious || loading">
+    <button class="icon-button" (click)="handleLeft()" [disabled]="!hasPrevious || loading">
         <i class="material-icons">chevron_left</i>
     </button>
-    <button (click)="handleRight()" [disabled]="!hasNext || loading">
+    <button class="icon-button" (click)="handleRight()" [disabled]="!hasNext || loading">
         <i class="material-icons">chevron_right</i>
     </button>
 </div>

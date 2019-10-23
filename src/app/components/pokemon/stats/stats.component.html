@@ -1,0 +1,26 @@
+<ul class="list">
+    <li>HP</li>
+    <li>Attack</li>
+    <li>Defense</li>
+    <li>Sp. Attack</li>
+    <li>Sp. Defense</li>
+    <li>Speed</li>
+    <li class="total">Total</li>
+</ul>
+<ul class="list bars">
+    <li id="hp" [style.transform]="getStatInPercent('hp')"></li>
+    <li id="attack" [style.transform]="getStatInPercent('attack')"></li>
+    <li id="defense" [style.transform]="getStatInPercent('defense')"></li>
+    <li id="spAttack" [style.transform]="getStatInPercent('spAttack')"></li>
+    <li id="spDefense" [style.transform]="getStatInPercent('spDefense')"></li>
+    <li id="speed" [style.transform]="getStatInPercent('speed')"></li>
+</ul>
+<ul class="list values">
+    <li>{{stats ? stats.hp : 0}}</li>
+    <li>{{stats ? stats.attack : 0}}</li>
+    <li>{{stats ? stats.defense : 0}}</li>
+    <li>{{stats ? stats.spAttack : 0}}</li>
+    <li>{{stats ? stats.spDefense : 0}}</li>
+    <li>{{stats ? stats.speed : 0}}</li>
+    <li class="total">{{stats ? total : 0}}</li>
+</ul>

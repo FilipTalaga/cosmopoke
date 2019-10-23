@@ -1,59 +1,28 @@
-<button class="icon-button" (click)="router.navigate(['/'])">
+<button class="icon-button back-button" (click)="router.navigate(['/'])">
     <i class="material-icons">close</i>
 </button>
-<div class="content">
-    <div class="header">
-        <div>
-            <h1>{{currentPokemon ? (currentPokemon.name | titlecase) : 'Pokemon'}}</h1>
-            <div class="separator"></div>
-        </div>
-        <div class="sprite">
-            <img *ngIf="currentPokemon" [src]="currentPokemon.imgUrl" />
-            <div *ngIf="!currentPokemon" class="sprite-mock"></div>
-        </div>
-    </div>
-    <div class="stats">
-        <ul class="list">
-            <li>HP</li>
-            <li>Attack</li>
-            <li>Defense</li>
-            <li>Sp. Attack</li>
-            <li>Sp. Defense</li>
-            <li>Speed</li>
-            <li class="total">Total</li>
-        </ul>
-        <ul class="list bars">
-            <li id="hp" [style.transform]="getStatInPercent('hp')"></li>
-            <li id="attack" [style.transform]="getStatInPercent('attack')"></li>
-            <li id="defense" [style.transform]="getStatInPercent('defense')"></li>
-            <li id="spAttack" [style.transform]="getStatInPercent('spAttack')"></li>
-            <li id="spDefense" [style.transform]="getStatInPercent('spDefense')"></li>
-            <li id="speed" [style.transform]="getStatInPercent('speed')"></li>
-        </ul>
-        <ul class="list values">
-            <li>{{currentPokemon ? currentPokemon.stats.hp : 0}}</li>
-            <li>{{currentPokemon ? currentPokemon.stats.attack : 0}}</li>
-            <li>{{currentPokemon ? currentPokemon.stats.defense : 0}}</li>
-            <li>{{currentPokemon ? currentPokemon.stats.spAttack : 0}}</li>
-            <li>{{currentPokemon ? currentPokemon.stats.spDefense : 0}}</li>
-            <li>{{currentPokemon ? currentPokemon.stats.speed : 0}}</li>
-            <li class="total">{{currentPokemon ? total : 0}}</li>
-        </ul>
-    </div>
-</div>
-<div class="actions">
-    <button (click)="handlePrev()" id="left" [disabled]="!prevPokemon || loadingPrev">
+
+<section class="content">
+    <h1>{{currentPokemon ? (currentPokemon.name | titlecase) : 'Pokemon'}}</h1>
+    <div class="separator"></div>
+    <img *ngIf="currentPokemon" class="sprite" [src]="currentPokemon.imgUrl" />
+    <div *ngIf="!currentPokemon" class="sprite sprite-mock"></div>
+    <stats [stats]="currentPokemon && currentPokemon.stats"></stats>
+</section>
+
+<section class="actions">
+    <button class="switch-button" (click)="handlePrev()" id="left" [disabled]="!prevPokemon || loadingPrev">
         <ng-template [ngIf]="prevPokemon">
             <i class="material-icons">chevron_left</i>
             <span>#{{prevPokemon.id}} {{prevPokemon.name | titlecase}}</span>
         </ng-template>
-        <div *ngIf="!prevPokemon" class="mock-button"></div>
+        <div *ngIf="!prevPokemon" class="mock"></div>
     </button>
-    <button (click)="handleNext()" id="right" [disabled]="!nextPokemon || loadingNext">
+    <button class="switch-button" (click)="handleNext()" id="right" [disabled]="!nextPokemon || loadingNext">
         <ng-template [ngIf]="nextPokemon">
             <span>#{{nextPokemon.id}} {{nextPokemon.name | titlecase}}</span>
             <i class="material-icons">chevron_right</i>
         </ng-template>
-        <div *ngIf="!nextPokemon" class="mock-button"></div>
+        <div *ngIf="!nextPokemon" class="mock"></div>
     </button>
-</div>
+</section>

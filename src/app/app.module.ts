@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { BackgroundComponent } from './components/background/background.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StatsComponent } from './components/pokemon/stats/stats.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         PokemonComponent,
         PageNotFoundComponent,
         BackgroundComponent,
-        ToolbarComponent
+        ToolbarComponent,
+        StatsComponent
     ],
     imports: [
         BrowserModule,

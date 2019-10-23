@@ -122,30 +122,4 @@
 .actions {
     display: flex;
     justify-content: flex-end;
-
-    & > button {
-        -webkit-tap-highlight-color: transparent;
-        user-select: none;
-        color: $color-text;
-        background-color: transparent;
-        border: none;
-        outline: none;
-        border-radius: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: .4rem;
-        cursor: pointer;
-        transition: 200ms background-color;
-    }
-
-    & > button:hover:not([disabled]) {
-        background-color: #f1f1f1;
-    }
-
-    & > button:disabled {
-        opacity: .2;
-        cursor: default;
-        pointer-events: none;
-    }
 }
