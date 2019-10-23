@@ -31,6 +31,11 @@ export class PokemonComponent implements OnInit {
         this.activatedRoute.params.subscribe(params => {
             const id = +params.id;
 
+            if (!(id >= 1 && id <= 100)) {
+                this.router.navigate(['/error']);
+                return;
+            }
+
             this.loadingNext = true;
             this.loadingPrev = true;
 
