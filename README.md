@@ -1,23 +1,55 @@
 # Cosmopoke
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.12.
+![screenshot](https://github.com/Rementh/cosmopoke/blob/resources/screenshoot.png)
 
-## Development server
+## Table of contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Running unit tests](#running-unit-tests)
+* [Build & deployment](#build-&-deployment)
+* [Status](#status)
+* [Contact](#contact)
 
-## Code scaffolding
+## General info
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This is a simple pokemon app in which you can search for the favorite creature and check it's stats. Application uses [Pokeapi](https://pokeapi.co/), and it's build on behalf of [Cosmose](https://cosmose.co/) recruitment process.
 
-## Build
+## Technologies
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+* Angular 8
+* Material Design Icons
+* Firebase
+
+## Setup
+
+To run this project, install it locally using npm:
+
+* Clone this repository
+$ `git clone https://github.com/Rementh/cosmopoke`
+
+* Go into the repository
+$ `cd cosmopoke`
+
+* Install dependencies
+$ `npm install`
+
+* Run the app
+$ `npm start`
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm run test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Further help
+## Build & deployment
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Run `npm run deploy` to build the project and deploy it to [Firebase](https://firebase.google.com/) production server.
+
+## Status
+
+Project is: _released_.
+
+## Contact
+
+Created by Filip Talaga (talaga.filip@gmail.com) - feel free to contact me!
