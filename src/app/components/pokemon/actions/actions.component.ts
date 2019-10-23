@@ -34,7 +34,7 @@ export class ActionsComponent implements OnInit, OnChanges {
     }
 
     private loadPrevPokemon(id: number) {
-        if (id <= 1) {
+        if (!(this.id >= 1 && this.id <= this.api.count)) {
             this.prevPokemon = null;
             return;
         }
@@ -47,7 +47,7 @@ export class ActionsComponent implements OnInit, OnChanges {
     }
 
     private loadNextPokemon(id: number) {
-        if (id >= this.api.count) {
+        if (!(this.id >= 1 && this.id <= this.api.count)) {
             this.nextPokemon = null;
             return;
         }
