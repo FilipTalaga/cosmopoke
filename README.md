@@ -5,6 +5,7 @@
 ## Table of contents
 
 * [General info](#general-info)
+* [Demo](#demo)
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Running unit tests](#running-unit-tests)
@@ -15,6 +16,9 @@
 ## General info
 
 This is a simple pokemon app in which you can search for the favorite creature and check it's stats. Application uses [Pokeapi](https://pokeapi.co/), and it's build on behalf of [Cosmose](https://cosmose.co/) recruitment process.
+
+## Demo
+Check out the live demo [here](https://cosmopoke-app.web.app/)!
 
 ## Technologies
 
