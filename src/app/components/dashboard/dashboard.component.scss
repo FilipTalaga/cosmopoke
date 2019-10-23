@@ -9,6 +9,19 @@
     border-radius: 1rem;
 }
 
+.mock-number {
+    height: 1rem;
+    width: 24px;
+    background: #f1f1f1;
+    border-radius: 2px;
+}
+
+.mock-pokemon {
+    height: 1rem;
+    background: #f1f1f1;
+    border-radius: 2px;
+}
+
 .separator {
     width: 40px;
     height: 4px;
@@ -62,9 +75,25 @@
     margin-top: .3rem;
 }
 
+.list-container {
+    display: grid;
+    margin: 1rem 0;
+
+    & > * {
+        grid-column: 1;
+        grid-row: 1;
+    }
+}
+
 .list {
     list-style: none;
     padding: 0;
+    line-height: 1;
+    margin: 0;
+}
+
+.mock-list {
+    transition: 200ms opacity;
 }
 
 .list-item {
@@ -74,6 +103,11 @@
 
     & > .id {
         font-weight: 400;
+        height: 1rem;
+    }
+
+    & > .name {
+        height: 1rem;
     }
 }
 
@@ -82,6 +116,7 @@
     justify-content: flex-end;
 
     & > button {
+        -webkit-tap-highlight-color: transparent;
         user-select: none;
         color: $color-text;
         background-color: transparent;

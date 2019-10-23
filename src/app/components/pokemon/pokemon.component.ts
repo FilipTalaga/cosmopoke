@@ -4,7 +4,6 @@ import { PokeapiService } from 'src/app/services/pokeapi.service';
 import Pokemon, { Stats } from 'src/app/data-models/pokemon';
 import PokemonDto from 'src/app/data-models/pokemon-dto';
 
-
 @Component({
     selector: 'pokemon',
     templateUrl: './pokemon.component.html',
@@ -14,6 +13,8 @@ export class PokemonComponent implements OnInit {
     public prevPokemon: Pokemon;
     public currentPokemon: Pokemon;
     public nextPokemon: Pokemon;
+    public loadingNext = false;
+    public loadingPrev = false;
 
     public maxStats: Stats = {
         hp: 255,
@@ -30,15 +31,37 @@ export class PokemonComponent implements OnInit {
         this.activatedRoute.params.subscribe(params => {
             const id = +params.id;
 
+            if (!(id >= 1 && id <= 100)) {
+                this.router.navigate(['/error']);
+                return;
+            }
+
+            this.loadingNext = true;
+            this.loadingPrev = true;
+
             this.api.getPokemon(id).subscribe((res: PokemonDto) => {
                 this.currentPokemon = this.dtoToPokemon(res);
             });
-            this.api.getPokemon(id - 1).subscribe((res: PokemonDto) => {
-                this.prevPokemon = this.dtoToPokemon(res);
-            });
-            this.api.getPokemon(id + 1).subscribe((res: PokemonDto) => {
-                this.nextPokemon = this.dtoToPokemon(res);
-            });
+
+            if (id > 1) {
+                this.api.getPokemon(id - 1).subscribe((res: PokemonDto) => {
+                    this.prevPokemon = this.dtoToPokemon(res);
+                    this.loadingNext = false;
+                });
+            } else {
+                this.prevPokemon = null;
+                this.loadingNext = false;
+            }
+
+            if (id < 100) {
+                this.api.getPokemon(id + 1).subscribe((res: PokemonDto) => {
+                    this.nextPokemon = this.dtoToPokemon(res);
+                    this.loadingPrev = false;
+                });
+            } else {
+                this.nextPokemon = null;
+                this.loadingPrev = false;
+            }
         });
     }
 
@@ -56,7 +79,7 @@ export class PokemonComponent implements OnInit {
     }
 
     getStatInPercent = (stat: string): string =>
-        `scaleX(${this.currentPokemon.stats[stat] / this.maxStats[stat]})`
+        `scaleX(${this.currentPokemon ? this.currentPokemon.stats[stat] / this.maxStats[stat] : 0.2})`
 
     private dtoToPokemon = (res: PokemonDto): Pokemon => ({
         id: res.id,

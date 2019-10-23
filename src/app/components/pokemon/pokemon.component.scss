@@ -55,6 +55,11 @@
     top: 2rem;
 }
 
+.sprite-mock {
+    width: 96px;
+    height: 96px;
+}
+
 .list {
     margin: 0;
     padding: 0;
@@ -129,6 +134,8 @@
     justify-content: space-between;
 
     & > button {
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -144,6 +151,7 @@
 
         & > span {
             flex: 1;
+            white-space: nowrap;
         }
     }
 
@@ -158,4 +166,14 @@
     & > button:hover {
         background-color: #f1f1f1;
     }
+
+    & > button:disabled {
+        color: #ddd;
+        cursor: default;
+        pointer-events: none;
+    }
+}
+
+.mock-button {
+    height: 24px;
 }
