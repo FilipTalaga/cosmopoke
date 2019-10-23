@@ -2,6 +2,10 @@ import { Component, OnInit, HostListener, ElementRef, Renderer2, ViewChild } fro
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
+const randomInt = (min: number, max: number): number => Math.floor(Math.random() * (max - min + 1) + min);
+
+const getRandomScale = (num: number = randomInt(1, 20)): string => (num < 10 ? '0' : '') + num;
+
 @Component({
     selector: 'background',
     templateUrl: './background.component.html',
@@ -35,10 +39,10 @@ export class BackgroundComponent implements OnInit {
     private animate() {
         this.expanded = !this.expanded;
 
-        this.setStyle(this.topBack, 'transform', this.expanded ? 'scale(1.1)' : '');
-        this.setStyle(this.topFront, 'transform', !this.expanded ? 'scale(1.1)' : '');
-        this.setStyle(this.botBack, 'transform', !this.expanded ? 'scale(1.1)' : '');
-        this.setStyle(this.botFront, 'transform', this.expanded ? 'scale(1.1)' : '');
+        this.setStyle(this.topBack, 'transform', `scale(1.${getRandomScale()})`);
+        this.setStyle(this.topFront, 'transform', `scale(1.${getRandomScale()})`);
+        this.setStyle(this.botBack, 'transform', `scale(1.${getRandomScale()})`);
+        this.setStyle(this.botFront, 'transform', `scale(1.${getRandomScale()})`);
     }
 
     private get height() {
