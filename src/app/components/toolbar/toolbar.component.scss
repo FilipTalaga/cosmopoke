@@ -1,15 +1,15 @@
 :host {
-    position: absolute;
+    position: fixed;
     top: 0;
-    background: white;
+    background: #fff;
     height: 60px;
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
     box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.1);
+}
 
-    & > img {
-        max-height: 24px;
-    }
+.logo {
+    max-height: 24px;
 }

@@ -9,8 +9,14 @@ import PokeapiDto from '../data-models/pokeapi-dto';
 })
 export class PokeapiService {
     public baseUrl = 'https://pokeapi.co/api/v2/pokemon';
+    public limit = 10;
+    public maxPages = 10;
 
     constructor(private http: HttpClient) { }
+
+    get count() {
+        return this.limit * this.maxPages;
+    }
 
     public getPokemon = (id: number): Observable<PokemonDto> => this.http
         .get<PokemonDto>(`${this.baseUrl}/${id}`)

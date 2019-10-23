@@ -1,0 +1,62 @@
+@import '../../../../styles/theme.scss';
+
+:host {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    & > li {
+        margin: 1rem 0;
+        line-height: 1;
+    }
+}
+
+.bars {
+    margin: 0 1rem;
+    flex: 1;
+
+    & > li {
+        transform-origin: left;
+        border-radius: 2px;
+        width: 100%;
+        height: 1rem;
+        transition: 200ms transform;
+    }
+
+    & > #hp {
+        background: $color-hp;
+    }
+
+    & > #attack {
+        background: $color-attack;
+    }
+
+    & > #defense {
+        background: $color-defense;
+    }
+
+    & > #spAttack {
+        background: $color-sp-attack;
+    }
+
+    & > #spDefense {
+        background: $color-sp-defense;
+    }
+
+    & > #speed {
+        background: $color-speed;
+    }
+}
+
+.values {
+    text-align: right;
+}
+
+.total {
+    font-weight: 500;
+}

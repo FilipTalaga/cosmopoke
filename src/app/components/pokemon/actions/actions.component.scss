@@ -1,0 +1,51 @@
+@import '../../../../styles/theme.scss';
+
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.switch-button {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    flex: 1;
+    padding: 2rem;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: 200ms background-color;
+
+    .mock {
+        height: 24px;
+    }
+
+    & span {
+        flex: 1;
+        white-space: nowrap;
+    }
+
+    &#left {
+        border-radius: 0 0 0 1rem;
+    }
+
+    &#right {
+        border-radius: 0 0 1rem 0;
+    }
+
+    &:hover {
+        background-color: $color-hover;
+    }
+
+    &:disabled {
+        color: $color-disabled;
+        cursor: default;
+        pointer-events: none;
+    }
+}
