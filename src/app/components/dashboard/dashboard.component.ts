@@ -8,13 +8,15 @@ import { Router } from '@angular/router';
 
 const randomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);
 
+const getMocks = (count: number) => Array(count).fill(0).map(() => randomInt(40, 100));
+
 @Component({
     selector: 'dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-    public mocks = Array(10).fill(0).map(() => randomInt(40, 100));
+    public mocks = getMocks(10);
     public searchForm: FormGroup;
     public pokemons: PokemonLabel[] = [];
     public hasNext = false;
@@ -65,6 +67,7 @@ export class DashboardComponent implements OnInit {
     }
 
     getPokemons() {
+        this.mocks = getMocks(10);
         this.pokemons = [];
         this.loading = true;
         this.api.getPokemons(this.currentOffset, this.limit).subscribe((res: PokeapiDto) => {

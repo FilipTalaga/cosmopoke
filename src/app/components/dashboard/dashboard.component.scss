@@ -75,10 +75,25 @@
     margin-top: .3rem;
 }
 
+.list-container {
+    display: grid;
+    margin: 1rem 0;
+
+    & > * {
+        grid-column: 1;
+        grid-row: 1;
+    }
+}
+
 .list {
     list-style: none;
     padding: 0;
     line-height: 1;
+    margin: 0;
+}
+
+.mock-list {
+    transition: 200ms opacity;
 }
 
 .list-item {
