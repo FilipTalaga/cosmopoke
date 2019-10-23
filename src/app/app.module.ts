@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StatsComponent } from './components/pokemon/stats/stats.component';
 import { ActionsComponent } from './components/pokemon/actions/actions.component';
 import { ListComponent } from './components/dashboard/list/list.component';
+import { IconButtonDirective } from './directives/icon-button.directive';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { ListComponent } from './components/dashboard/list/list.component';
         ToolbarComponent,
         StatsComponent,
         ActionsComponent,
-        ListComponent
+        ListComponent,
+        IconButtonDirective
     ],
     imports: [
         BrowserModule,

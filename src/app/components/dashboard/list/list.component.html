@@ -16,10 +16,10 @@
 </section>
 
 <section class="actions">
-    <button class="icon-button" (click)="handleLeft()" [disabled]="!hasPrevious || loading">
+    <button iconButton (click)="handleLeft()" [disabled]="!hasPrevious || loading">
         <i class="material-icons">chevron_left</i>
     </button>
-    <button class="icon-button" (click)="handleRight()" [disabled]="!hasNext || loading">
+    <button iconButton (click)="handleRight()" [disabled]="!hasNext || loading">
         <i class="material-icons">chevron_right</i>
     </button>
 </section>

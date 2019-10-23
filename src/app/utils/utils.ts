@@ -30,3 +30,6 @@ export const mapPokemonDto = (dto: PokemonDto): Pokemon => {
         }
     };
 };
+
+export const isTruthy = (prop: any): boolean =>
+    !!(prop !== false && prop !== 'false' && prop != null);
