@@ -6,7 +6,8 @@
         "start": "ng serve --open",
         "test": "ng test",
         "lint": "ng lint",
-        "build": "npm run lint && ng build --prod"
+        "build": "npm run lint && ng build --prod",
+        "deploy": "npm run build && firebase deploy"
     },
     "private": true,
     "dependencies": {
