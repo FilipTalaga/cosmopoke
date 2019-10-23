@@ -94,12 +94,14 @@
 
 .mock-list {
     transition: 200ms opacity;
+    pointer-events: none;
 }
 
 .list-item {
     padding: .5rem;
     display: flex;
     justify-content: space-between;
+    transition: 200ms background-color;
 
     & > .id {
         font-weight: 400;
@@ -109,6 +111,11 @@
     & > .name {
         height: 1rem;
     }
+}
+
+.list-item:hover {
+    background-color: #f1f1f1;
+    border-radius: 2px;
 }
 
 .actions {

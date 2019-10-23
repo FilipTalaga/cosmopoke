@@ -11,10 +11,12 @@
 <p class="error" *ngIf="isFormInvalid">Type number between 1 and {{limit * maxPages}}</p>
 <div class="list-container">
     <ul class="list">
-        <li class="list-item" *ngFor="let item of pokemons">
-            <div class="id">#{{item.id}}</div>
-            <div class="name">{{item.name | titlecase}}</div>
-        </li>
+        <a [routerLink]="[ '/pokemon', item.id ]" *ngFor="let item of pokemons">
+            <li class="list-item">
+                <div class="id">#{{item.id}}</div>
+                <div class="name">{{item.name | titlecase}}</div>
+            </li>
+        </a>
     </ul>
     <ul class="list mock-list" [style.opacity]="pokemons.length === 0 ? 1 : 0">
         <li class="list-item" *ngFor="let item of mocks">
