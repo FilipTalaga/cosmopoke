@@ -11,8 +11,8 @@
 <p class="error" *ngIf="isFormInvalid">Type number between 1 and {{limit * maxPages}}</p>
 <ul *ngIf="pokemons.length !== 0" class="list">
     <li class="list-item" *ngFor="let item of pokemons">
-        <span class="id">#{{item.id}}</span>
-        <span>{{item.name | titlecase}}</span>
+        <div class="id">#{{item.id}}</div>
+        <div class="name">{{item.name | titlecase}}</div>
     </li>
 </ul>
 <ul *ngIf="pokemons.length === 0" class="list">
