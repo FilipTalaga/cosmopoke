@@ -47,6 +47,14 @@
     align-items: center;
 }
 
+.sprite {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right: 25%;
+    top: 2rem;
+}
+
 .list {
     margin: 0;
     padding: 0;
