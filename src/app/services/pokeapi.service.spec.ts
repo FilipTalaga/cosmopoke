@@ -24,6 +24,7 @@ describe('PokeapiService', () => {
     describe('#getPokemon', () => {
         it('should get bulbasaur', () => {
             const dummyPokemon: PokemonDto = {
+                id: 4,
                 name: 'bulbasaur',
                 sprites: {
                     front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
@@ -49,6 +50,7 @@ describe('PokeapiService', () => {
 
         it('should get mawile', () => {
             const dummyPokemon: PokemonDto = {
+                id: 4,
                 name: 'mawile',
                 sprites: {
                     front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/303.png',
