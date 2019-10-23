@@ -1,0 +1,54 @@
+@import './fonts.scss';
+@import './theme.scss';
+@import '~material-design-icons/iconfont/material-icons.css';
+
+html, body {
+    height: 100%;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+input,
+button,
+textarea {
+    font-family: 'Rubik', sans-serif;
+    color: $color-text;
+    font-weight: 300;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-family: 'Campton-Bold', sans-serif;
+    font-weight: 500;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

@@ -1,0 +1,38 @@
+@import '../../../styles/theme.scss';
+
+svg {
+    position: absolute;
+    left: 0;
+    z-index: -1;
+}
+
+path {
+    transition: transform 600ms;
+    transform-origin: center;
+}
+
+.top-svg {
+    top: 60px;
+    filter: drop-shadow(rgba($color-accent, .4) 0px 0px 30px);
+
+    & > .back {
+        fill: rgba($color-accent, .1);
+    }
+
+    & > .front {
+        fill: $color-accent;
+    }
+}
+
+.bot-svg {
+    bottom: 0;
+    filter: drop-shadow(rgba($color-primary, .4) 0px 0px 30px);
+
+    & > .back {
+        fill: rgba($color-primary, .1);
+    }
+
+    & > .front {
+        fill: $color-primary;
+    }
+}

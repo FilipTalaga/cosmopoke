@@ -1,0 +1,24 @@
+<h1>Choose your pokemon!</h1>
+<div class="separator"></div>
+<p class="info">
+    Pick the favorite creature and check for stats. You can search by typing id into field below.
+</p>
+<form class="search-form" (submit)="handleSearch()" [formGroup]="searchForm">
+    <input class="search-field" placeholder="Id" type="number" formControlName="id">
+    <button class="search-button" type="submit">Search</button>
+</form>
+<p class="error" *ngIf="isFormInvalid">Type number between 1 and {{limit * maxPages}}</p>
+<ul class="list">
+    <li class="list-item" *ngFor="let item of pokemons">
+        <span class="id">#{{item.id}}</span>
+        <span>{{item.name | titlecase}}</span>
+    </li>
+</ul>
+<div class="actions">
+    <button (click)="handleLeft()" [disabled]="!hasPrevious">
+        <i class="material-icons">chevron_left</i>
+    </button>
+    <button (click)="handleRight()" [disabled]="!hasNext">
+        <i class="material-icons">chevron_right</i>
+    </button>
+</div>

@@ -1,0 +1,54 @@
+<div *ngIf="loaded">
+    <button class="icon-button" (click)="router.navigate(['/'])">
+        <i class="material-icons">close</i>
+    </button>
+    <div class="content">
+        <div class="header">
+            <div>
+                <h1>{{currentPokemon.name | titlecase}}</h1>
+                <div class="separator"></div>
+            </div>
+            <div class="sprite">
+                <img [src]="currentPokemon.imgUrl" />
+            </div>
+        </div>
+        <div class="stats">
+            <ul class="list">
+                <li>HP</li>
+                <li>Attack</li>
+                <li>Defense</li>
+                <li>Sp. Attack</li>
+                <li>Sp. Defense</li>
+                <li>Speed</li>
+                <li class="total">Total</li>
+            </ul>
+            <ul class="list bars">
+                <li id="hp" [style.transform]="getStatInPercent('hp')"></li>
+                <li id="attack" [style.transform]="getStatInPercent('attack')"></li>
+                <li id="defense" [style.transform]="getStatInPercent('defense')"></li>
+                <li id="spAttack" [style.transform]="getStatInPercent('spAttack')"></li>
+                <li id="spDefense" [style.transform]="getStatInPercent('spDefense')"></li>
+                <li id="speed" [style.transform]="getStatInPercent('speed')"></li>
+            </ul>
+            <ul class="list values">
+                <li>{{currentPokemon.stats.hp}}</li>
+                <li>{{currentPokemon.stats.attack}}</li>
+                <li>{{currentPokemon.stats.defense}}</li>
+                <li>{{currentPokemon.stats.spAttack}}</li>
+                <li>{{currentPokemon.stats.spDefense}}</li>
+                <li>{{currentPokemon.stats.speed}}</li>
+                <li class="total">{{total}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="actions">
+        <button (click)="handlePrev()" id="left">
+            <i class="material-icons">chevron_left</i>
+            <span>#{{prevPokemon.id}} {{prevPokemon.name | titlecase}}</span>
+        </button>
+        <button (click)="handleNext()" id="right">
+            <span>#{{nextPokemon.id}} {{nextPokemon.name | titlecase}}</span>
+            <i class="material-icons">chevron_right</i>
+        </button>
+    </div>
+</div>
