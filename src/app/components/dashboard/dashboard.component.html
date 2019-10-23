@@ -4,7 +4,8 @@
     Pick the favorite creature and check for stats. You can search by typing id into field below.
 </p>
 <form class="search-form" (submit)="handleSearch()" [formGroup]="searchForm">
-    <input class="search-field" placeholder="Id" type="number" formControlName="id">
+    <input class="search-field" placeholder="Id" type="number" formControlName="id"
+        [style.borderColor]="isFormInvalid ? 'red' : 'rgba(40, 50, 76, 0.7)'">
     <button class="search-button" type="submit">Search</button>
 </form>
 <p class="error" *ngIf="isFormInvalid">Type number between 1 and {{limit * maxPages}}</p>
