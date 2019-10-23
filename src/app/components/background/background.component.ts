@@ -1,10 +1,7 @@
 import { Component, OnInit, HostListener, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
-
-const randomInt = (min: number, max: number): number => Math.floor(Math.random() * (max - min + 1) + min);
-
-const getRandomScale = (num: number = randomInt(1, 20)): string => (num < 10 ? '0' : '') + num;
+import { randomInt } from 'src/app/utils/utils';
 
 @Component({
     selector: 'background',
@@ -19,31 +16,10 @@ export class BackgroundComponent implements OnInit {
     @ViewChild('botBack', null) botBack: ElementRef;
     @ViewChild('botFront', null) botFront: ElementRef;
 
-    private expanded = false;
-
-    constructor(private renderer: Renderer2, private router: Router) { }
-
-    ngOnInit() {
-        this.update(this.width, this.height);
-
-        this.router.events
-            .pipe(filter(event => event instanceof NavigationEnd))
-            .subscribe(() => this.animate());
-    }
-
-    @HostListener('window:resize')
-    onResize() {
-        this.update(this.width, this.height);
-    }
-
-    private animate() {
-        this.expanded = !this.expanded;
-
-        this.setStyle(this.topBack, 'transform', `scale(1.${getRandomScale()})`);
-        this.setStyle(this.topFront, 'transform', `scale(1.${getRandomScale()})`);
-        this.setStyle(this.botBack, 'transform', `scale(1.${getRandomScale()})`);
-        this.setStyle(this.botFront, 'transform', `scale(1.${getRandomScale()})`);
-    }
+    constructor(
+        private renderer: Renderer2,
+        private router: Router
+    ) { }
 
     private get height() {
         return (window.innerWidth < window.innerHeight ? window.innerHeight / 2 : window.innerHeight) - 60;
@@ -53,12 +29,24 @@ export class BackgroundComponent implements OnInit {
         return window.innerWidth;
     }
 
-    private setStyle(el: ElementRef, style: string, value: string) {
-        this.renderer.setStyle(el.nativeElement, style, value);
+    ngOnInit() {
+        this.router.events
+            .pipe(filter(event => event instanceof NavigationEnd))
+            .subscribe(() => this.animate());
+
+        this.update(this.width, this.height);
     }
 
-    private setAttr(el: ElementRef, attr: string, value: string) {
-        this.renderer.setAttribute(el.nativeElement, attr, value);
+    @HostListener('window:resize')
+    onResize() {
+        this.update(this.width, this.height);
+    }
+
+    private animate() {
+        this.setStyle(this.topBack, 'transform', `scale(1.${this.getRandomScale()})`);
+        this.setStyle(this.topFront, 'transform', `scale(1.${this.getRandomScale()})`);
+        this.setStyle(this.botBack, 'transform', `scale(1.${this.getRandomScale()})`);
+        this.setStyle(this.botFront, 'transform', `scale(1.${this.getRandomScale()})`);
     }
 
     private update(width: number, height: number) {
@@ -95,5 +83,20 @@ export class BackgroundComponent implements OnInit {
             Q ${x(750)} ${y(200)} ${x(950)} ${y(300)}
             L ${x(950)} ${y(500)} Z
         `);
+    }
+
+    // ------------------------------------------------------------------------------------------- //
+    //     Helper methods                                                                          //
+    // ------------------------------------------------------------------------------------------- //
+
+    private getRandomScale = (num: number = randomInt(1, 20)): string =>
+        (num < 10 ? '0' : '') + num
+
+    private setStyle(el: ElementRef, style: string, value: string) {
+        this.renderer.setStyle(el.nativeElement, style, value);
+    }
+
+    private setAttr(el: ElementRef, attr: string, value: string) {
+        this.renderer.setAttribute(el.nativeElement, attr, value);
     }
 }

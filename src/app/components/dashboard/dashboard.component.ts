@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PokeapiService } from 'src/app/services/pokeapi.service';
 import PokeapiDto from 'src/app/data-models/pokeapi-dto';
 import PokemonLabel from 'src/app/data-models/pokemon-label';
-import { getIdFromUrl } from 'src/app/utils/utils';
+import { getIdFromUrl, randomInt } from 'src/app/utils/utils';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-const randomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);
 
 const getMocks = (count: number) => Array(count).fill(0).map(() => randomInt(40, 100));
 
