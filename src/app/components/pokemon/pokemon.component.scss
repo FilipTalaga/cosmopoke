@@ -134,6 +134,7 @@
     justify-content: space-between;
 
     & > button {
+        -webkit-tap-highlight-color: transparent;
         user-select: none;
         display: flex;
         align-items: center;
@@ -150,6 +151,7 @@
 
         & > span {
             flex: 1;
+            white-space: nowrap;
         }
     }
 
