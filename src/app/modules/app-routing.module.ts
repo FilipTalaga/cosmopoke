@@ -8,7 +8,8 @@ const routes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'pokemon/:id', component: PokemonComponent },
-    { path: '**', component: PageNotFoundComponent }
+    { path: '404', component: PageNotFoundComponent },
+    { path: '**', redirectTo: '404', pathMatch: 'full' },
 ];
 
 @NgModule({
