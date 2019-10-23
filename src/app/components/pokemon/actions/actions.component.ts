@@ -47,7 +47,7 @@ export class ActionsComponent implements OnInit, OnChanges {
     }
 
     private loadNextPokemon(id: number) {
-        if (id >= 100) {
+        if (id >= this.api.count) {
             this.nextPokemon = null;
             return;
         }

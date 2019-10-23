@@ -9,6 +9,6 @@
         [style.borderColor]="isFormInvalid ? 'red' : 'rgba(40, 50, 76, 0.7)'">
     <button class="search-button" type="submit">Search</button>
 </form>
-<p class="error" *ngIf="isFormInvalid">Type number between 1 and {{limit * maxPages}}</p>
+<p class="error" *ngIf="isFormInvalid">Type number between 1 and {{api.count}}</p>
 
 <list></list>

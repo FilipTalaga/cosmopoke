@@ -10,8 +10,6 @@ import PokeapiDto from 'src/app/data-models/pokeapi-dto';
     styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-    public limit = 10;
-    public maxPages = 10;
     public mocks = getRandomSequence(10, 40, 100);
     public pokemons: PokemonLabel[] = [];
     public hasNext = false;
@@ -27,12 +25,12 @@ export class ListComponent implements OnInit {
     }
 
     public handleLeft() {
-        this.currentOffset -= this.limit;
+        this.currentOffset -= this.api.limit;
         this.getPokemons();
     }
 
     public handleRight() {
-        this.currentOffset += this.limit;
+        this.currentOffset += this.api.limit;
         this.getPokemons();
     }
 
@@ -40,7 +38,7 @@ export class ListComponent implements OnInit {
         this.mocks = getRandomSequence(10, 40, 100);
         this.pokemons = [];
         this.loading = true;
-        this.api.getPokemons(this.currentOffset, this.limit).subscribe((res: PokeapiDto) => {
+        this.api.getPokemons(this.currentOffset, this.api.limit).subscribe((res: PokeapiDto) => {
             this.hasNext = !!res.next && !this.isOverMaxPages();
             this.hasPrevious = !!res.previous;
             this.pokemons = res.results.map(item => ({
@@ -52,5 +50,5 @@ export class ListComponent implements OnInit {
     }
 
     private isOverMaxPages = (): boolean =>
-        this.currentOffset >= this.maxPages * this.limit - this.limit
+        this.currentOffset >= this.api.count - this.api.limit
 }

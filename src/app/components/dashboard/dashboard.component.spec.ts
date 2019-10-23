@@ -3,6 +3,7 @@ import { DashboardComponent } from './dashboard.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListComponent } from './list/list.component';
 
 describe('DashboardComponent', () => {
     let component: DashboardComponent;
@@ -11,7 +12,7 @@ describe('DashboardComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [RouterTestingModule, HttpClientTestingModule, FormsModule, ReactiveFormsModule],
-            declarations: [DashboardComponent],
+            declarations: [DashboardComponent, ListComponent],
         }).compileComponents();
     }));
 
