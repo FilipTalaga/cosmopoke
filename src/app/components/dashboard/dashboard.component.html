@@ -9,17 +9,23 @@
     <button class="search-button" type="submit">Search</button>
 </form>
 <p class="error" *ngIf="isFormInvalid">Type number between 1 and {{limit * maxPages}}</p>
-<ul class="list">
+<ul *ngIf="pokemons.length !== 0" class="list">
     <li class="list-item" *ngFor="let item of pokemons">
         <span class="id">#{{item.id}}</span>
         <span>{{item.name | titlecase}}</span>
     </li>
 </ul>
+<ul *ngIf="pokemons.length === 0" class="list">
+    <li class="list-item" *ngFor="let item of mocks">
+        <div class="mock-number"></div>
+        <div class="mock-pokemon" [style.width.px]="item"></div>
+    </li>
+</ul>
 <div class="actions">
-    <button (click)="handleLeft()" [disabled]="!hasPrevious">
+    <button (click)="handleLeft()" [disabled]="!hasPrevious || loading">
         <i class="material-icons">chevron_left</i>
     </button>
-    <button (click)="handleRight()" [disabled]="!hasNext">
+    <button (click)="handleRight()" [disabled]="!hasNext || loading">
         <i class="material-icons">chevron_right</i>
     </button>
 </div>

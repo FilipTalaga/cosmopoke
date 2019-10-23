@@ -9,6 +9,19 @@
     border-radius: 1rem;
 }
 
+.mock-number {
+    height: 1rem;
+    width: 24px;
+    background: #f1f1f1;
+    border-radius: 2px;
+}
+
+.mock-pokemon {
+    height: 1rem;
+    background: #f1f1f1;
+    border-radius: 2px;
+}
+
 .separator {
     width: 40px;
     height: 4px;
@@ -65,6 +78,7 @@
 .list {
     list-style: none;
     padding: 0;
+    line-height: 1;
 }
 
 .list-item {

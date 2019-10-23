@@ -6,19 +6,24 @@ import { getIdFromUrl } from 'src/app/utils/utils';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+const randomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);
+
 @Component({
     selector: 'dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+    public mocks = Array(10).fill(0).map(() => randomInt(40, 100));
     public searchForm: FormGroup;
     public pokemons: PokemonLabel[] = [];
     public hasNext = false;
     public hasPrevious = false;
-    private currentOffset = 0;
     public limit = 10;
     public maxPages = 10;
+    public loading = false;
+
+    private currentOffset = 0;
 
     constructor(formBuilder: FormBuilder, private api: PokeapiService, private router: Router) {
         this.searchForm = formBuilder.group({
@@ -60,6 +65,8 @@ export class DashboardComponent implements OnInit {
     }
 
     getPokemons() {
+        this.pokemons = [];
+        this.loading = true;
         this.api.getPokemons(this.currentOffset, this.limit).subscribe((res: PokeapiDto) => {
             this.hasNext = !!res.next && !this.isOverMaxPages();
             this.hasPrevious = !!res.previous;
@@ -67,6 +74,7 @@ export class DashboardComponent implements OnInit {
                 name: item.name,
                 id: getIdFromUrl(item.url)
             }));
+            this.loading = false;
         });
     }
 
