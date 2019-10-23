@@ -10,19 +10,6 @@
     margin: 1rem;
 }
 
-.mock-number {
-    height: 1rem;
-    width: 24px;
-    background: #f1f1f1;
-    border-radius: 2px;
-}
-
-.mock-pokemon {
-    height: 1rem;
-    background: #f1f1f1;
-    border-radius: 2px;
-}
-
 .separator {
     width: 40px;
     height: 4px;
@@ -38,88 +25,40 @@
     margin-top: 1.5rem;
     display: flex;
     align-items: stretch;
-}
 
-.search-field {
-    width: 100%;
-    padding: .8rem 1.2rem;
-    border: 1px solid rgba($color-text, .7);
-    outline: none;
-    font-weight: 500;
-}
+    .search-field {
+        width: 100%;
+        padding: .8rem 1.2rem;
+        border: 1px solid rgba($color-text, .7);
+        outline: none;
+        font-weight: 500;
+    }
 
-.search-button {
-    user-select: none;
-    text-transform: uppercase;
-    background: $color-primary;
-    border: none;
-    outline: none;
-    padding: 0 2rem;
-    font-weight: 500;
-    cursor: pointer;
-    color: #fff;
-}
+    .search-button {
+        user-select: none;
+        text-transform: uppercase;
+        background: $color-primary;
+        border: none;
+        outline: none;
+        padding: 0 2rem;
+        font-weight: 500;
+        cursor: pointer;
+        color: #fff;
 
-.search-button:hover:not([disabled]) {
-    background: linear-gradient(90deg,#0935ec 0,#ff00f0 100%);
-}
+        &:hover {
+            background: linear-gradient(90deg,#0935ec 0,#ff00f0 100%);
+        }
 
-.search-button:disabled {
-    opacity: .2;
-    cursor: default;
-    pointer-events: none;
+        &:disabled {
+            opacity: .2;
+            cursor: default;
+            pointer-events: none;
+        }
+    }
 }
 
 .error {
     color: red;
     font-size: .875rem;
     margin-top: .3rem;
-}
-
-.list-container {
-    display: grid;
-    margin: 1rem 0;
-
-    & > * {
-        grid-column: 1;
-        grid-row: 1;
-    }
-}
-
-.list {
-    list-style: none;
-    padding: 0;
-    line-height: 1;
-    margin: 0;
-}
-
-.mock-list {
-    transition: 200ms opacity;
-    pointer-events: none;
-}
-
-.list-item {
-    padding: .5rem;
-    display: flex;
-    justify-content: space-between;
-    transition: 200ms background-color;
-
-    & > .id {
-        font-weight: 400;
-        height: 1rem;
-    }
-
-    & > .name {
-        height: 1rem;
-    }
-}
-
-.list-item:hover {
-    background-color: #f1f1f1;
-    border-radius: 2px;
-}
-
-.actions {
-    display: flex;
-    justify-content: flex-end;
 }

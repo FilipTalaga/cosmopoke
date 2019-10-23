@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { randomInt } from 'src/app/utils/utils';
+import { getRandomInt } from 'src/app/utils/utils';
 
 @Component({
     selector: 'background',
@@ -89,7 +89,7 @@ export class BackgroundComponent implements OnInit {
     //     Helper methods                                                                          //
     // ------------------------------------------------------------------------------------------- //
 
-    private getRandomScale = (num: number = randomInt(1, 20)): string =>
+    private getRandomScale = (num: number = getRandomInt(1, 20)): string =>
         (num < 10 ? '0' : '') + num
 
     private setStyle(el: ElementRef, style: string, value: string) {

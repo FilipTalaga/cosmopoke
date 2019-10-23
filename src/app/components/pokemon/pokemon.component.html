@@ -10,19 +10,4 @@
     <stats [stats]="currentPokemon && currentPokemon.stats"></stats>
 </section>
 
-<section class="actions">
-    <button class="switch-button" (click)="handlePrev()" id="left" [disabled]="!prevPokemon || loadingPrev">
-        <ng-template [ngIf]="prevPokemon">
-            <i class="material-icons">chevron_left</i>
-            <span>#{{prevPokemon.id}} {{prevPokemon.name | titlecase}}</span>
-        </ng-template>
-        <div *ngIf="!prevPokemon" class="mock"></div>
-    </button>
-    <button class="switch-button" (click)="handleNext()" id="right" [disabled]="!nextPokemon || loadingNext">
-        <ng-template [ngIf]="nextPokemon">
-            <span>#{{nextPokemon.id}} {{nextPokemon.name | titlecase}}</span>
-            <i class="material-icons">chevron_right</i>
-        </ng-template>
-        <div *ngIf="!nextPokemon" class="mock"></div>
-    </button>
-</section>
+<actions [id]="id"></actions>

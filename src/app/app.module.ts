@@ -10,6 +10,8 @@ import { BackgroundComponent } from './components/background/background.componen
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StatsComponent } from './components/pokemon/stats/stats.component';
+import { ActionsComponent } from './components/pokemon/actions/actions.component';
+import { ListComponent } from './components/dashboard/list/list.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +21,9 @@ import { StatsComponent } from './components/pokemon/stats/stats.component';
         PageNotFoundComponent,
         BackgroundComponent,
         ToolbarComponent,
-        StatsComponent
+        StatsComponent,
+        ActionsComponent,
+        ListComponent
     ],
     imports: [
         BrowserModule,
