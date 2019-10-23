@@ -1,3 +1,5 @@
+@import '../../../../styles/theme.scss';
+
 .list-container {
     display: grid;
     margin: 1rem 0;
@@ -21,13 +23,13 @@
         .mock-number {
             height: 1rem;
             width: 24px;
-            background: #f1f1f1;
+            background: $color-hover;
             border-radius: 2px;
         }
 
         .mock-pokemon {
             height: 1rem;
-            background: #f1f1f1;
+            background: $color-hover;
             border-radius: 2px;
         }
     }
@@ -49,7 +51,7 @@
     }
 
     .list-item:hover {
-        background-color: #f1f1f1;
+        background-color: $color-hover;
         border-radius: 2px;
     }
 }
